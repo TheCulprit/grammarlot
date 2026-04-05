@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <!-- Cuts out the gateway to make it transparent -->
+    <mask id="doorway">
+      <rect width="64" height="64" fill="white"/>
+      <rect x="26" y="44" width="12" height="12" fill="black"/>
+      <circle cx="32" cy="44" r="6" fill="black"/>
+    </mask>
+  </defs>
+  <!-- Draws the Royal Gold Castle -->
+  <g mask="url(#doorway)" fill="#daa520">
+    <rect x="12" y="20" width="12" height="36"/>
+    <rect x="40" y="20" width="12" height="36"/>
+    <rect x="16" y="36" width="32" height="20"/>
+    <rect x="12" y="14" width="4" height="6"/>
+    <rect x="20" y="14" width="4" height="6"/>
+    <rect x="40" y="14" width="4" height="6"/>
+    <rect x="48" y="14" width="4" height="6"/>
+    <rect x="28" y="30" width="8" height="6"/>
+  </g>
+</svg>

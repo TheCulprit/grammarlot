@@ -1,0 +1,11 @@
+{
+  "name": "grammarlot",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -c \"blue.bold,green.bold\" -n \"FASTAPI,VITE\" \"cd backend && uv run uvicorn app.main:app --reload\" \"cd frontend && yarn dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
