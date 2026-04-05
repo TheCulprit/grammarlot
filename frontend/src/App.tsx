@@ -3,7 +3,6 @@ import { Play, Folder, FileText, Loader2, Save, ChevronRight, ChevronDown, Trash
 import Editor from '@monaco-editor/react'
 import { generateText, fetchFiles, getFileContent, saveFileContent, deleteItem, createFolder, moveItem, getAppConfig, saveAppConfig } from './api'
 import { setupParsifalLanguage, validateParsifalCode } from './parsifalLanguage'
-import packageJson from '../package.json'
 
 type FileNode = { name: string; type: "file" | "directory"; path: string; children?: FileNode[]; };
 type EditState = { path: string; type: 'file' | 'folder'; mode: 'create' | 'rename'; initialValue: string; } | null;
