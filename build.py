@@ -78,15 +78,14 @@ def build_app():
     dst_exe = os.path.join("dist", f"Grammarlot{exe_ext}")
     
     if os.path.exists(src_exe):
-        # Mac creates a .app folder, Windows/Linux create a file. Handle both!
         if os.path.isdir(src_exe):
             if os.path.exists(dst_exe): shutil.rmtree(dst_exe)
             shutil.copytree(src_exe, dst_exe)
         else:
             shutil.copy2(src_exe, dst_exe)
-        print(f"\n✅ Build Complete! Executable is ready at: {dst_exe}")
+        print(f"\n[SUCCESS] Build Complete! Executable is ready at: {dst_exe}")
     else:
-        print("\n❌ Error: Could not find the compiled executable.")
+        print("\n[ERROR] Could not find the compiled executable.")
 
     for temp_dir in [os.path.join("backend", "build"), os.path.join("backend", "dist")]:
         if os.path.exists(temp_dir):
