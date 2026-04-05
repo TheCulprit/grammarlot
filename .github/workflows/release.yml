@@ -19,7 +19,7 @@ jobs:
             ext: .exe
           - os: macos-latest
             name: Grammarlot-MacOS
-            ext: .app
+            ext: ""
           - os: ubuntu-latest
             name: Grammarlot-Linux
             ext: ""
@@ -44,7 +44,14 @@ jobs:
         # We let uv handle everything. It will auto-download Python and build isolated environments.
         run: uv run build.py
 
-      - name: Zip the Application
+      - name: Zip the Application (Windows)
+        if: matrix.os == 'windows-latest'
+        run: |
+          cd dist
+          Compress-Archive -Path "Grammarlot.exe" -DestinationPath "..\${{ matrix.name }}.zip"
+
+      - name: Zip the Application (Mac & Linux)
+        if: matrix.os != 'windows-latest'
         run: |
           cd dist
           zip -r ../${{ matrix.name }}.zip "Grammarlot${{ matrix.ext }}"
