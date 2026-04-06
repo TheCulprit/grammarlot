@@ -516,7 +516,10 @@ function App() {
 								const activeTabData = openFiles.find(f => f.path === activeFiles.left && f.pane === 'left');
 								return (
 									<Editor key={`editor-left`} height="100%" language="parsifal" theme="parsifal-dark" path={activeFiles.left} defaultValue={activeTabData?.initialContent}
-										onChange={() => setOpenFiles(prev => prev.map(f => f.path === activeFiles.left && f.pane === 'left' ? { ...f, hasChanges: true, isPinned: true } : f))}
+										onChange={() => {
+											setOpenFiles(prev => prev.map(f => f.path === activeFiles.left && f.pane === 'left' ? { ...f, hasChanges: true, isPinned: true } : f));
+											if (editorLeft && monacoInstance) validateParsifalCode(editorLeft, monacoInstance);
+										}}
 										beforeMount={(m) => setupParsifalLanguage(m, getLatestFilePaths)}
 										onMount={(editor, m) => { setEditorLeft(editor); setMonacoInstance(m); editor.addCommand(m.KeyMod.CtrlCmd | m.KeyCode.KeyS, () => handleSaveFileRef.current()); }}
 										options={{ minimap: { enabled: false }, wordWrap: 'on', fontSize: 14, padding: { top: 16 } }} />
@@ -561,7 +564,10 @@ function App() {
 										const activeTabData = openFiles.find(f => f.path === activeFiles.right && f.pane === 'right');
 										return (
 											<Editor key={`editor-right`} height="100%" language="parsifal" theme="parsifal-dark" path={activeFiles.right} defaultValue={activeTabData?.initialContent}
-												onChange={() => setOpenFiles(prev => prev.map(f => f.path === activeFiles.right && f.pane === 'right' ? { ...f, hasChanges: true, isPinned: true } : f))}
+												onChange={() => {
+													setOpenFiles(prev => prev.map(f => f.path === activeFiles.right && f.pane === 'right' ? { ...f, hasChanges: true, isPinned: true } : f));
+													if (editorRight && monacoInstance) validateParsifalCode(editorRight, monacoInstance);
+												}}
 												beforeMount={(m) => setupParsifalLanguage(m, getLatestFilePaths)}
 												onMount={(editor, m) => { setEditorRight(editor); setMonacoInstance(m); editor.addCommand(m.KeyMod.CtrlCmd | m.KeyCode.KeyS, () => handleSaveFileRef.current()); }}
 												options={{ minimap: { enabled: false }, wordWrap: 'on', fontSize: 14, padding: { top: 16 } }} />
